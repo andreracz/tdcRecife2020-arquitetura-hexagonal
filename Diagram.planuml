@@ -1,0 +1,34 @@
+@startuml
+
+skinparam packageStyle Frame
+
+package "Driver"  {
+	class ContaCorrenteRestController #F4B183
+}
+
+package "Domain"  {
+	interface IContaCorrenteService #A9D18E
+	interface IContaCorrenteRepository #A9D18E
+	IContaCorrenteService <|-- ContaCorrenteService
+	ContaCorrente o-- Transacao
+}
+ContaCorrenteRestController -> IContaCorrenteService
+
+package "Driven" {
+	class ContaCorrenteRepository #F4B183
+}
+
+ContaCorrenteService --> ContaCorrente
+
+ContaCorrenteService -> IContaCorrenteRepository
+IContaCorrenteRepository <|- ContaCorrenteRepository
+
+@enduml
+
+@startuml
+package "Legenda" {
+	class Adapters #F4B183
+	interface Ports #A9D18E
+	class Domain
+}
+@enduml
